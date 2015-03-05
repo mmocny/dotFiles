@@ -1,0 +1,27 @@
+[user]
+  name = Michal Mocny
+  email = mmocny@gmail.com
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+[alias]
+  ec = config --global -e
+  lg = log --color --graph --format=legit --abbrev-commit
+  subup = submodule update --init --recursive
+  up = !git pull --rebase --prune $@ && git subup
+  cm = !git add -A :/ && git commit -m
+  ca = !git add -A :/ && git commit -a --amend
+	wdiff = diff --color-words
+[pretty]
+  legit = %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
+[push]
+  default = simple
+[core]
+  autocrlf = false
+  filemode = false
+  deltaBaseCacheLimit = 1G
+[rerere]
+  enabled = true
+[hub]
+	protocol = https

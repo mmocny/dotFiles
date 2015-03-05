@@ -1,0 +1,9 @@
+# TAB: menu-complete
+
+# cycle forward
+Control-k: menu-complete
+# cycle backward
+Control-j: menu-complete-backward
+
+set completion-ignore-case on
+set completion-display-width 1
