@@ -1,13 +1,15 @@
 " vundle:
+set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 Bundle 'gmarik/vundle'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'plasticboy/vim-markdown'
 
+call vundle#end()
 filetype plugin indent on
 
 " vim-markdown:
@@ -18,7 +20,6 @@ let g:vim_markdown_folding_disabled=1
 set nospell
 
 " mine:
-set nocompatible
 set autoread " changes to file automatically read w/o warning
 set nobackup
 set noswapfile
