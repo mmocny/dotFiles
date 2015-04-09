@@ -138,6 +138,9 @@ export EDITOR=vim
 
 shopt -s globstar
 
+# As per: http://stackoverflow.com/questions/8598021/iterm-2-profiles
+echo -e "\033]50;SetProfile=${HOSTNAME}\a"
+
 ################################################################################
 
 # The next line updates PATH for the Google Cloud SDK.
