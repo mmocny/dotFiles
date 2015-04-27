@@ -8,6 +8,9 @@ call vundle#begin()
 Bundle 'gmarik/vundle'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'plasticboy/vim-markdown'
+Bundle 'mhinz/vim-startify'
+Bundle 'bling/vim-airline'
+Bundle 'Lokaltog/vim-easymotion'
 
 call vundle#end()
 filetype plugin indent on
@@ -23,6 +26,10 @@ set nospell
 set autoread " changes to file automatically read w/o warning
 set nobackup
 set noswapfile
+
+" For airline
+set laststatus=2
+set ttimeoutlen=50
 
 " if you don't disable writing backups file are touched twice per save
 " messing with "watch" commands.  See http://stackoverflow.com/questions/21608480/gulp-js-watch-task-runs-twice-when-saving-files
@@ -48,6 +55,18 @@ set hls
 set hidden " allows open file without save, and preserves undo buffer
 set scrolloff=3
 "set cursorline
+
+" Session Options
+set sessionoptions=buffers,curdir
+
+" Persistant History
+set undofile
+set undolevels=1000
+set undoreload=10000
+if !isdirectory(expand("~/.vim/undo"))
+    silent call system("mkdir ~/.vim/undo")
+end
+set undodir=~/.vim/undo
 
 set wildmode=longest,list,full
 set wildmenu
@@ -146,6 +165,8 @@ noremap! <silent> <F8> <Esc>:source ~/.vimrc<CR>a
 :map  <C-t>          :tabnew<CR>
 :map! <C-F4>    <Esc>:tabclose<CR>
 :map  <C-F4>         :tabclose<CR>
+
+nmap w <Plug>(easymotion-bd-w)
 
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 
