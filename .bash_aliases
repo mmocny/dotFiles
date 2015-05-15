@@ -53,3 +53,5 @@ alias git_commit_counts='git shortlog -sn --no-merges'
 alias openxcode='open platforms/ios/*.xcodeproj/'
 
 alias clang++='~/dev/ext/llvm_build/Release/bin/clang++ -stdlib=libc++ -nostdinc++ -I ~/dev/ext/libcxx/include -L ~/dev/ext/libcxx/lib'
+
+alias tommy="echo -e '\033]50;SetProfile=tommy.hot.corp.google.com\a' && mosh tommy.hot.corp.google.com && source ~/.bashrc"
