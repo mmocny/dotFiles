@@ -98,6 +98,8 @@ function safeSource() {
 function safeSourceWithHostnameCustomizations() {
     file=$1
     custom=${file}_${HOSTNAME} # TODO: perhaps append before file extension?
+    safeSource $file
+    safeSource $custom
 }
 
 safeSourceWithHostnameCustomizations ~/.bash_aliases
