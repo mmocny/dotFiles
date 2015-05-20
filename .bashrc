@@ -88,45 +88,35 @@ if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+function safeSource() {
+    file=$1
+    if [ ! -s $file ]; then
+        return
+    fi
+    source $file
+}
+function safeSourceWithHostnameCustomizations() {
+    file=$1
+    custom=${file}_${HOSTNAME} # TODO: perhaps append before file extension?
+}
 
-if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
-fi
+safeSourceWithHostnameCustomizations ~/.bash_aliases
+safeSourceWithHostnameCustomizations ~/.bash_functions
+safeSourceWithHostnameCustomizations ~/.bash_hacks
 
-if [ -f ~/.bash_hacks ]; then
-    . ~/.bash_hacks
-fi
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
+safeSource /etc/bash_completion
 
 GIT_COMPLETION_DIR=/usr/local/git/current/share/git-core/
+safeSource $GIT_COMPLETION_DIR/git-completion.bash
+safeSource $GIT_COMPLETION_DIR/git-prompt.sh
+export GIT_PS1_SHOWDIRTYSTATE=true
 
-if [ -f $GIT_COMPLETION_DIR/git-completion.bash ]; then
-  . $GIT_COMPLETION_DIR/git-completion.bash
-fi
+safeSource ~/.cordova.completion
+safeSource ~/dev/ext/hub/etc/hub.bash_completion.sh
+safeSource ~/.nvm/nvm.sh
 
-if [ -f $GIT_COMPLETION_DIR/git-prompt.sh ]; then
-  . $GIT_COMPLETION_DIR/git-prompt.sh
-  export GIT_PS1_SHOWDIRTYSTATE=true
-fi
-
-if [ -f ~/.cordova.completion ]; then
-  . ~/.cordova.completion
-fi
-
-if [ -f ~/dev/ext/hub/etc/hub.bash_completion.sh ]; then
-  . ~/dev/ext/hub/etc/hub.bash_completion.sh
-fi
-
-[ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
+safeSource ~/dev/ext/google-cloud-sdk/path.bash.inc
+safeSource ~/dev/ext/google-cloud-sdk/completion.bash.inc
 
 ################################################################################
 
@@ -140,17 +130,6 @@ shopt -s globstar
 
 # As per: http://stackoverflow.com/questions/8598021/iterm-2-profiles
 # echo -e "\033]50;SetProfile=${HOSTNAME}\a"
-
-################################################################################
-
-
-if [ -d ~/dev/ext/google-cloud-sdk ]; then
-    # The next line updates PATH for the Google Cloud SDK.
-    source "${HOME}/dev/ext/google-cloud-sdk/path.bash.inc"
-
-    # The next line enables bash completion for gcloud.
-    source "${HOME}/dev/ext/google-cloud-sdk/completion.bash.inc"
-fi
 
 ################################################################################
 
