@@ -24,7 +24,7 @@ HISTFILESIZE=200000
 shopt -s checkwinsize
 
 # * expansion fails whole command if it doesn't match anything
-shopt -s failglob
+#shopt -s failglob
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
