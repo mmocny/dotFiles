@@ -143,37 +143,28 @@ shopt -s globstar
 
 ################################################################################
 
-# The next line updates PATH for the Google Cloud SDK.
-source "${HOME}/dev/ext/google-cloud-sdk/path.bash.inc"
 
-# The next line enables bash completion for gcloud.
-source "${HOME}/dev/ext/google-cloud-sdk/completion.bash.inc"
+if [ -d ~/dev/ext/google-cloud-sdk ]; then
+    # The next line updates PATH for the Google Cloud SDK.
+    source "${HOME}/dev/ext/google-cloud-sdk/path.bash.inc"
+
+    # The next line enables bash completion for gcloud.
+    source "${HOME}/dev/ext/google-cloud-sdk/completion.bash.inc"
+fi
 
 ################################################################################
-
-source $HOME/.bagpipe/setup.sh $HOME/.bagpipe tommy.hot.corp.google.com
-
-################################################################################
-
-export DART_SDK="${HOME}/opt/dart-sdk"
 
 export PATH="${HOME}/bin:${PATH}"
 
 export PATH="${PATH}:/Applications/Xcode.app/Contents/Developer/usr/bin"
-#export PATH="${PATH}:${HOME}/opt/adt-bundle-mac-x86_64-20131030/sdk/tools"
-#export PATH="${PATH}:${HOME}/opt/adt-bundle-mac-x86_64-20131030/sdk/platform-tools"
-#export PATH="${PATH}:${HOME}/opt/apache-ant-1.9.3/bin"
 export PATH="${PATH}:${HOME}/dev/depot_tools"
-export PATH="${PATH}:{$DART_SDK}/bin"
 
 export ANDROID_HOME="${HOME}/Library/Android/sdk"
 export PATH="${PATH}:${ANDROID_HOME}/tools"
 export PATH="${PATH}:${ANDROID_HOME}/platform-tools"
 
-# After installing brew coreutil
+# After brew install coreutils
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 export HISTTIMEFORMAT="%d/%m/%y %T "
-
-export P4EDITOR=vim
