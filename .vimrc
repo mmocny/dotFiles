@@ -8,7 +8,7 @@ call vundle#begin()
 Bundle 'gmarik/vundle'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'plasticboy/vim-markdown'
-Bundle 'mhinz/vim-startify'
+"Bundle 'mhinz/vim-startify'
 Bundle 'bling/vim-airline'
 Bundle 'Lokaltog/vim-easymotion'
 
@@ -227,3 +227,11 @@ nmap <silent> <Leader><Tab> :<C-U>exe "set ts=" . v:count1 . " sts=" . v:count1 
 
 "call indent_guides#enable()
 "IndentGuidesEnable
+
+function! SafeSource(filename)
+    if !empty(glob(a:filename))
+        execute 'source ' . a:filename
+    endif
+endfunction
+
+call SafeSource($HOME . '/.vimrc_' . hostname())
