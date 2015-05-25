@@ -41,9 +41,9 @@ colors desert
 set spl=en_ca
 set wildmode=longest,list
 set nohlsearch
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 set autoindent smartindent nocindent " last two added recently
 set copyindent
