@@ -7,7 +7,7 @@ call vundle#begin()
 
 Bundle 'gmarik/vundle'
 Bundle 'Valloric/YouCompleteMe'
-Bundle 'plasticboy/vim-markdown'
+"Bundle 'plasticboy/vim-markdown'
 "Bundle 'mhinz/vim-startify'
 Bundle 'bling/vim-airline'
 Bundle 'Lokaltog/vim-easymotion'
