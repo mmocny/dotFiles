@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+kinit
+ssh -t tommy.hot.corp.google.com bash -i -c /usr/bin/prodaccess
+remount

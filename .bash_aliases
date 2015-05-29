@@ -54,4 +54,4 @@ alias openxcode='open platforms/ios/*.xcodeproj/'
 
 alias clang++='~/dev/ext/llvm_build/Release/bin/clang++ -stdlib=libc++ -nostdinc++ -I ~/dev/ext/libcxx/include -L ~/dev/ext/libcxx/lib'
 
-alias tommy="echo -e '\033]50;SetProfile=tommy.hot.corp.google.com\a'; mosh tommy.hot.corp.google.com; echo -e '\033]50;SetProfile=mmocny-macbookpro2.roam.corp.google.com\a'"
+alias tommy="ssh-screen tommy.hot.corp.google.com main;" # echo -e '\033]50;SetProfile=mmocny-macbookpro2.roam.corp.google.com\a'
