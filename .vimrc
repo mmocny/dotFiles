@@ -205,6 +205,10 @@ inoremap <Up> <C-o>gk
 
 " Abbreviations
 
+" This yanks previous copy when pasting over
+xnoremap p pgvy
+xnoremap P Pgvy
+
 " Code
 iab #d #define
 iab #i #include
@@ -235,3 +239,6 @@ function! SafeSource(filename)
 endfunction
 
 call SafeSource($HOME . '/.vimrc_' . hostname())
+
+highlight OverLength ctermbg=darkred ctermfg=white guibg=#592929
+match OverLength /\%>80v.\+/
