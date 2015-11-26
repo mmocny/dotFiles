@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/bin/bash
 DIR=$PWD
 ARGS=("$@")
 MVIM=/usr/local/bin/mvim

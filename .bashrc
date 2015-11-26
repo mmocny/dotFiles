@@ -148,3 +148,4 @@ export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 export HISTTIMEFORMAT="%d/%m/%y %T "
+export PATH=/usr/local/google/home/mmocny/lib/depot_tools:$PATH
