@@ -4,7 +4,7 @@
 host="tommy.hot"
 user="mmocny"
 # list of pairs "remote/path/1:local/path/1 remote/path/2:local/path/2"
-mounts="/google/src/cloud:/google/src/cloud"
+mounts="/google/src/cloud:/google/src/cloud /usr/local/google:/usr/local/google"
 dokillall=1
 
 # First ensure the directories exist

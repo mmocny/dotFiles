@@ -138,7 +138,6 @@ shopt -s globstar
 export PATH="${HOME}/bin:${PATH}"
 
 export PATH="${PATH}:/Applications/Xcode.app/Contents/Developer/usr/bin"
-export PATH="${PATH}:${HOME}/dev/depot_tools"
 
 export ANDROID_HOME="${HOME}/Library/Android/sdk"
 export PATH="${PATH}:${ANDROID_HOME}/tools"

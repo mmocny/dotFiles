@@ -26,3 +26,7 @@
     enabled = true
 [hub]
     protocol = ssh
+[google]
+	lastUpdateCheck = 20150713000000
+[http]
+	cookiefile = /Users/mmocny/.gitcookies

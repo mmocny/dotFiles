@@ -195,3 +195,14 @@ ernie()
   USBDONGLE_HOSTNAME=ernie
   sshpass -p${PASS} ssh ${USER}@${USBDONGLE_HOSTNAME} -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no
 }
+
+paths()
+{
+  PATHS_WITH_EDITS="$(g4 status | awk '{print $1}' | xargs -L 1 dirname | sort -u | sed -s 's/\/\/depot//')"
+
+  PS3="Select a path: "
+  select PATH_WITH_EDIT in $PATHS_WITH_EDITS; do
+    g4d "$PATH_WITH_EDIT"
+    break;
+  done
+}
