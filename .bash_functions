@@ -169,7 +169,7 @@ function lsgvim ()
   paste -d'/' <(wmctrl -l | grep GVIM | cut -d' ' -f6 | tr -d "()") <(wmctrl -l | grep GVIM | cut -d' ' -f5)
 }
 
-cp_p()
+function cp_p()
 {
    strace -q -ewrite cp -- "${1}" "${2}" 2>&1 \
       | awk '{
@@ -188,7 +188,7 @@ cp_p()
          END { print "" }' total_size=$(stat -c '%s' "${1}") count=0
 }
 
-ernie()
+function ernie()
 {
   USER=root
   PASS=test0000
@@ -196,7 +196,7 @@ ernie()
   sshpass -p${PASS} ssh ${USER}@${USBDONGLE_HOSTNAME} -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no
 }
 
-paths()
+function paths()
 {
   PATHS_WITH_EDITS="$(g4 status | awk '{print $1}' | xargs -L 1 dirname | sort -u | sed -s 's/\/\/depot//')"
 
@@ -205,4 +205,17 @@ paths()
     g4d "$PATH_WITH_EDIT"
     break;
   done
+}
+
+function screenme()
+{
+  SESSION="${1}"
+  screen -x -q -U -R "$SESSION" -t "$SESSION"
+}
+
+function good-morning() {
+  echo "Good Morning!"
+  /Users/mmocny/bin/good-morning
+  remount
+  cd $PWD
 }

@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+set -e
+
+gcert
 kinit
 ssh -t tommy.hot.corp.google.com bash -i -c /usr/bin/prodaccess
-remount
+
+if [ "$1" = "--all" ]; then
+  remount --all
+fi

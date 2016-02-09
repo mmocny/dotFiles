@@ -135,6 +135,7 @@ shopt -s globstar
 
 ################################################################################
 
+export PATH="${HOME}/homebrew/bin:$PATH"
 export PATH="${HOME}/bin:${PATH}"
 
 export PATH="${PATH}:/Applications/Xcode.app/Contents/Developer/usr/bin"
@@ -144,6 +145,9 @@ export PATH="${PATH}:${ANDROID_HOME}/tools"
 export PATH="${PATH}:${ANDROID_HOME}/platform-tools"
 
 # After brew install coreutils
+export PATH="${HOME}/homebrew/coreutils/libexec/gnubin:${PATH}"
+export MANPATH="${HOME}/homebrew/coreutils/libexec/gnuman:$MANPATH"
+
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 

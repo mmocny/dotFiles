@@ -7,6 +7,7 @@ host=$1
 session=$2
 
 SSH_OPTS="-oCompression=yes -oCheckHostIP=no -oPreferredAuthentications=gssapi-with-mic -oServerAliveInterval=$alive_interval"
+SSH_OPTS="-oCompression=yes -oCheckHostIP=no -oServerAliveInterval=$alive_interval"
 
 # U=utf8, R=reattach, q=quiet, x=multiplex
 screen_cmd="screen -x -q -U -R $session -t $session"

@@ -241,4 +241,14 @@ endfunction
 call SafeSource($HOME . '/.vimrc_' . hostname())
 
 highlight OverLength ctermbg=darkred ctermfg=white guibg=#592929
-match OverLength /\%>80v.\+/
+
+fun! UpdateMatch()
+    if &ft =~ '^\%(cpp\)$'
+        match OverLength /\%81v.*/
+    elseif &ft =~ '^\%(java\)$'
+        match OverLength /\%101v.*/
+    else
+        match NONE
+    endif
+endfun
+autocmd BufEnter,BufWinEnter * call UpdateMatch()

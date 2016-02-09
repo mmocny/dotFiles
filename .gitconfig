@@ -12,7 +12,7 @@
     subup = submodule update --init --recursive
     up = !git pull --rebase --prune $@ && git subup
     cm = !git add -A :/ && git commit -m
-    ca = !git add -A :/ && git commit -a --amend
+    ca = !git add -A :/ && git commit -a --amend --no-edit
     wdiff = diff --color-words
 [pretty]
     legit = %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
