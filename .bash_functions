@@ -216,6 +216,6 @@ function screenme()
 function good-morning() {
   echo "Good Morning!"
   /Users/mmocny/bin/good-morning
-  remount
+  sleep 3 # Not sure why, but even after mount succeeds cannot `cd` for a bit
   cd $PWD
 }

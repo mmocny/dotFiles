@@ -133,6 +133,8 @@ shopt -s globstar
 # As per: http://stackoverflow.com/questions/8598021/iterm-2-profiles
 # echo -e "\033]50;SetProfile=${HOSTNAME}\a"
 
+export HISTTIMEFORMAT="%d/%m/%y %T "
+
 ################################################################################
 
 export PATH="${HOME}/homebrew/bin:$PATH"
@@ -151,5 +153,7 @@ export MANPATH="${HOME}/homebrew/coreutils/libexec/gnuman:$MANPATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
-export HISTTIMEFORMAT="%d/%m/%y %T "
-export PATH=/usr/local/google/home/mmocny/lib/depot_tools:$PATH
+export PATH="${PATH}:/Users/mmocny/opt/depot_tools"
+
+export GYP_GENERATOR_FLAGS="xcode_ninja_target_pattern=All_iOS xcode_ninja_executable_target_pattern=chrome|unit_test|unittests"
+

@@ -13,7 +13,7 @@ if [[ "$#" > 0 ]]; then
   if [[ "$1" == "--all" ]]; then
     MOUNT="ALL"
   else
-    MOUNT="$(realpath $1)"
+    MOUNT="$1"
   fi
 fi
 
