@@ -130,6 +130,9 @@ export EDITOR=vim
 
 shopt -s globstar
 
+# Fix prodaccess inside screen, as per https://yaqs.googleplex.com/eng/q/5225599271436288
+eval $(ssh-agent -s)
+
 # As per: http://stackoverflow.com/questions/8598021/iterm-2-profiles
 # echo -e "\033]50;SetProfile=${HOSTNAME}\a"
 
