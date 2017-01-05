@@ -1,0 +1,70 @@
+#!/usr/bin/env python
+#
+# Copyright (C) 2008 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import commands
+import getopt
+import os
+import sys
+import time
+
+"""
+Tool to poke override values into the Gservices table on a running device.
+"""
+
+OVERRIDE_ACTION = "com.google.gservices.intent.action.GSERVICES_OVERRIDE"
+
+if __name__ == "__main__":
+  opts, args = getopt.getopt(sys.argv[1:], "des:p:u:")
+
+  env_user = os.getenv("ANDROID_USER", None)
+  if env_user:
+    user_args = " --user " + env_user
+  else:
+    user_args = ""
+
+  adb = "adb"
+  for opt, val in opts:
+    if opt == "-u":
+      user_args = " --user " + val
+    else:
+      adb += commands.mkarg(opt)
+      if val: adb += commands.mkarg(val)
+
+  if not args:
+    print "usage: %s [<adb flags>] [-u user_num] <name>=<value> ... | reset <names>" % sys.argv[0]
+    sys.exit(2)
+
+  # We don't use the "am" shell script because it does not work when
+  # the last argument is an empty string.  (This appears to be a bug
+  # with the device's sh's handling of "$@", not something that we can
+  # just fix in the script.)
+  command = "CLASSPATH=/system/framework/am.jar su root app_process /system/bin com.android.commands.am.Am broadcast" + user_args + " -a" + commands.mkarg(OVERRIDE_ACTION)
+  if args[0] == "reset":
+    for key in args[1:]:
+      command += " --esn" + commands.mkarg(key)
+  else:
+    settings = {}
+    if "=" in args[0]:
+      settings.update([a.split("=", 1) for a in args])
+    else:  # compatibility mode: override-gservices arg value
+      settings[args[0]] = " ".join(args[1:])
+    for key, value in settings.items():
+      command += " -e" + commands.mkarg(key) + commands.mkarg(value)
+
+  adb += commands.mkarg("shell") + commands.mkarg(command)
+  if os.system(adb):
+    print >> sys.stderr, "failed:", adb
+    sys.exit(1)

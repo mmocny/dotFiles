@@ -1,10 +1,19 @@
 #!/usr/bin/env bash
 
+host="tommy.hot.corp.google.com"
+host="tommy.wat.corp.google.com"
+
 set -e
 
+echo 'Good Morning!'
+
+set -o verbose
+
 gcert
-kinit
-ssh -t tommy.hot.corp.google.com bash -i -c /usr/bin/prodaccess
+# kinit # Seems no longer supported https://yaqs.googleplex.com/eng/q/4638546043338752
+ssh -t $host bash -i -c /usr/bin/prodaccess
+
+set +o verbose
 
 if [ "$1" = "--all" ]; then
   remount --all

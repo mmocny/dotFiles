@@ -13,4 +13,4 @@ SSH_OPTS="-oCiphers=arcfour -oCheckHostIP=no -oStrictHostKeyChecking=no -oNumber
 SSHFS_OPTS="-C -olocal -ofollow_symlinks -ovolname=$volname -oauto_cache -oiosize=65536 -oallow_recursion -oreconnect -oworkaround=rename"
 #SSHFS_OPTS="-C -olocal -ofollow_symlinks -ovolname=$volname -oauto_cache -oiosize=65536 -oallow_recursion -oreconnect -oworkaround=rename -odebug -osshfs_debug -ologlevel=debug"
 
-$SSHFS_BIN $user@$host.corp.google.com:$pathremote $pathlocal -p22 $SSH_OPTS $SSHFS_OPTS
+$SSHFS_BIN $user@$host:$pathremote $pathlocal -p22 $SSH_OPTS $SSHFS_OPTS

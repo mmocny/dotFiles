@@ -212,10 +212,3 @@ function screenme()
   SESSION="${1}"
   screen -x -q -U -R "$SESSION" -t "$SESSION"
 }
-
-function good-morning() {
-  echo "Good Morning!"
-  /Users/mmocny/bin/good-morning
-  sleep 3 # Not sure why, but even after mount succeeds cannot `cd` for a bit
-  cd $PWD
-}

@@ -1,10 +1,18 @@
 #!/bin/bash
 
 # Configure these yourself first!
-host="tommy.hot"
+host="tommy.hot.corp.google.com"
+host="tommy.wat.corp.google.com"
 user="mmocny"
+
+CrRoot="/usr/local/google/code/clankium/src"
+
 # list of pairs "remote/path/1:local/path/1 remote/path/2:local/path/2"
-mounts="/google/src/cloud:/google/src/cloud /usr/local/google/code/clankium/src/chrome/android/java/src/org/chromium/chrome/browser/physicalweb:/usr/local/google/code/clankium/src/chrome/android/java/src/org/chromium/chrome/browser/physicalweb /usr/local/google/code/clankium/src/out:/usr/local/google/code/clankium/src/out /usr/local/google/code/clankium/src/clank/java/src/org/chromium/chrome/browser/physicalweb:/usr/local/google/code/clankium/src/clank/java/src/org/chromium/chrome/browser/physicalweb"
+mounts="/google/src/cloud:/google/src/cloud"
+mounts+=" ${CrRoot}/components:${CrRoot}/components"
+mounts+=" ${CrRoot}/chrome/android/java/src/org/chromium/chrome/browser:${CrRoot}/chrome/android/java/src/org/chromium/chrome/browser"
+mounts+=" ${CrRoot}/out:${CrRoot}/out"
+mounts+=" ${CrRoot}/clank/java/src/org/chromium/chrome/browser/physicalweb:${CrRoot}/clank/java/src/org/chromium/chrome/browser/physicalweb"
 
 dokillall=1
 
