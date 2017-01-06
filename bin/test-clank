@@ -1,7 +1,6 @@
 cd /usr/local/google/code/clankium/src
 #scp tommy.wat:/usr/local/google/code/clankium/src/out/Debug/apks/Chrome*.apk .
 
-build/android/adb_install_apk.py --keep_data --apk Chrome.apk
 build/android/adb_install_apk.py --keep_data --apk ChromeTest.apk
 
 out/Debug/bin/run_chrome_public_test_apk --debug -f *physicalweb*'

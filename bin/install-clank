@@ -1,0 +1,3 @@
+cd /usr/local/google/code/clankium/src
+
+build/android/adb_install_apk.py --keep_data --apk Chrome.apk
