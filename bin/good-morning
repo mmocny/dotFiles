@@ -7,14 +7,21 @@ set -e
 
 echo 'Good Morning!'
 
-set -o verbose
+# As per https://stackoverflow.com/questions/14639125/logging-bash-scripts-with-verbose-and-xtrace-set-vx-and-customizing-ps4
+#PS4='$ '
+#set -o xtrace
+#set -o verbose
+function trace()
+{
+    # "${BASH_SOURCE[1]}:${BASH_LINENO[0]}:${FUNCNAME[1]}:"
+    echo
+    echo "$ $BASH_COMMAND"
+}
+set -o functrace
+shopt -s extdebug
+trap trace DEBUG
 
 gcert
+
 # kinit # Seems no longer supported https://yaqs.googleplex.com/eng/q/4638546043338752
 ssh -t $host bash -i -c /usr/bin/prodaccess
-
-set +o verbose
-
-if [ "$1" = "--all" ]; then
-  remount --all
-fi
