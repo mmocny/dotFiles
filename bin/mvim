@@ -1,0 +1,22 @@
+#!/bin/bash
+DIR=$PWD
+ARGS=("$@")
+MVIM=/usr/local/bin/mvim
+
+test -f $MVIM || MVIM=vim
+
+#echo Args: "${ARGS[@]}"
+#echo Length: "${#ARGS[@]}"
+#echo "====="
+
+for i in $(seq "${#ARGS[@]}"); do
+    i=$((i-1))
+    ARG="${ARGS[${i}]}"
+    #echo "Arg: $ARG"
+    RP="$(realpath $ARG)"
+    #echo "RP: ${RP}"
+    ARGS[i]="${RP}"
+done
+
+cd /
+$MVIM "${ARGS[@]}"

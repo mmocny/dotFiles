@@ -1,0 +1,70 @@
+#!/bin/bash
+
+# Configure these yourself first!
+host="tommy.hot.corp.google.com"
+host="tommy.wat.corp.google.com"
+user="mmocny"
+
+CrRoot="/usr/local/google/code/clankium/src"
+
+# list of pairs "remote/path/1:local/path/1 remote/path/2:local/path/2"
+mounts="/google/src/cloud:/google/src/cloud"
+mounts+=" ${CrRoot}/components:${CrRoot}/components"
+mounts+=" ${CrRoot}/chrome/android/java/src/org/chromium/chrome/browser:${CrRoot}/chrome/android/java/src/org/chromium/chrome/browser"
+mounts+=" ${CrRoot}/out:${CrRoot}/out"
+mounts+=" ${CrRoot}/clank/java/src/org/chromium/chrome/browser/physicalweb:${CrRoot}/clank/java/src/org/chromium/chrome/browser/physicalweb"
+
+dokillall=1
+
+MOUNT="$PWD"
+if [[ "$#" > 0 ]]; then
+  if [[ "$1" == "--all" ]]; then
+    MOUNT="ALL"
+  else
+    MOUNT="$1"
+  fi
+fi
+
+# Failsafe
+if [[ "$MOUNT" = "ALL" ]] && [[ $dokillall ]]; then
+  killall -s sshfs > /dev/null 2>&1
+  nothingtokill=$?
+  if [[ $nothingtokill == 0 ]]; then
+    killall -9 sshfs
+  fi
+fi
+
+for mountpair in $mounts ; do
+  mountp=${mountpair/*:/}
+  remotep=${mountpair/:*/}
+
+  if [[ "$MOUNT" != "ALL" ]] && [[ "${MOUNT:0:${#mountp}}" != "$mountp" ]]; then
+    echo "Skipping $mountp"
+    continue;
+  fi
+
+  # First ensure the directory exists
+  if [[ ! -d "$mountp" ]]; then
+    echo "$mountp does not exist, creating."
+    sudo mkdir -p -m 744 "$mountp"
+    sudo chown $user:eng "$mountp"
+  fi
+
+  # Unmount first
+  if [[ $(mount | grep -F "$mountp" 2> /dev/null) ]] ; then
+    echo "$mountp was still mounted, unmounting."
+    umount $mountp || diskutil unmount force $mountp
+  fi
+
+  # Mount
+  tail=${mountp/*\//}
+  mount-sshfs $tail $host $user $remotep $mountp
+
+  mountres=$?
+  if [[ $mountres != 0 ]]; then
+    echo "Failed to mount $mountp, aborting"
+    exit $mountres
+  fi
+
+  echo "Mounted $mountp."
+done

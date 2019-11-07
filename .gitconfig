@@ -1,0 +1,33 @@
+[user]
+    name = Michal Mocny
+    email = mmocny@gmail.com
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+    ui = auto
+[alias]
+    editconfig = config --global -e
+    alias = config --global --get-regexp ^alias.
+    lg = log --color --graph --format=legit --abbrev-commit
+    subup = submodule update --init --recursive
+    up = !git pull --rebase --prune $@ && git subup
+    cm = !git add -A :/ && git commit -m
+    ca = !git add -A :/ && git commit -a --amend --no-edit
+    wdiff = diff --color-words
+[pretty]
+    legit = %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
+[push]
+    default = simple
+[core]
+    autocrlf = false
+    filemode = false
+    deltaBaseCacheLimit = 1G
+[rerere]
+    enabled = true
+[hub]
+    protocol = ssh
+[google]
+	lastUpdateCheck = 20150713000000
+[http]
+	cookiefile = ~/.gitcookies

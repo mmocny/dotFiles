@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Lets try this for a bit
+auth-refresh-gtunnel.py tommy.wat
+exit
+
+host="tommy.hot.corp.google.com"
+host="tommy.wat.corp.google.com"
+
+set -e
+
+echo 'Good Morning!'
+
+set -o verbose
+
+gcert
+# kinit # Seems no longer supported https://yaqs.googleplex.com/eng/q/4638546043338752
+ssh -t $host bash -i -c /usr/bin/prodaccess
+
+set +o verbose
+
+if [ "$1" = "--all" ]; then
+  remount --all
+fi

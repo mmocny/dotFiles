@@ -1,0 +1,3 @@
+cd /usr/local/google/code/clankium/src
+
+nice ninja -C out/Debug -j2000 -k50 -l20 chrome_apk chrome_public_test_apk
